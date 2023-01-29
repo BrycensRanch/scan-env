@@ -39,5 +39,4 @@ const scanEnv = (
 
   return true;
 };
-console.log(scanEnv())
 module.exports = scanEnv;
