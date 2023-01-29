@@ -1,6 +1,6 @@
 {
   "name": "scan-env",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Scan the required environment variables in the project.",
   "main": "index.js",
   "keywords": [
