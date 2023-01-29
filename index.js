@@ -5,7 +5,7 @@ const path = require("path");
 const scanEnv = (
   envFile = ".env",
   exampleEnv = ".env.example",
-  ignoreEnv = null
+  ignoreEnv = ".envignore"
 ) => {
   // load envFile
   dotenv.config({ path: path.resolve(envFile) });
@@ -31,21 +31,10 @@ const scanEnv = (
   }
 
   if (missingEnvs.length) {
-    console.warn(
-      `Env Scan Report
-------------------------------------------------------------------------
-Total Missing Environment Variables:
-${missingEnvs.length}
-
-Missing Environment Variables: 
-${missingEnvs.join("\n")}
-------------------------------------------------------------------------
-`
-    );
-    return false;
+    return missingEnvs;
   }
 
   return true;
 };
-
+console.log(scanEnv())
 module.exports = scanEnv;
