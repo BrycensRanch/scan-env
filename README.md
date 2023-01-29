@@ -3,17 +3,17 @@
 Scan Env is a simple npm package which reads required environment variables
 from `.env.example` and scan those in `.env`. It uses `dotenv` in background to load the `.env` file.
 
-It returns a boolean.
+It returns either `false` or an array of missing environment variables.
 
-[npm package link](https://www.npmjs.com/package/scan-env)
+[orginial project](https://www.npmjs.com/package/scan-env)
 
 ## Install
 
 ```
-npm install scan-env
+npm install BrycensRanch/scan-env
 ```
 
-## Use
+## Usage
 
 ### With default files
 
@@ -26,8 +26,8 @@ const scanEnv = require("scan-env");
 
 const scanResult = scanEnv();
 
-if (!scanResult) {
-  console.error("Environment variables are missing.");
+if (scanResult.length) {
+  console.error(`The following required environment variables are missing: ${scanResult.join(", ")}`);
 }
 ```
 
@@ -42,8 +42,8 @@ const scanEnv = require("scan-env");
 
 const scanResult = scanEnv(".prod.env", ".prod.env.example", ".prod.envignore");
 
-if (!scanResult) {
-  console.error("Environment variables are missing.");
+if (scanResult.length) {
+  console.error(`The following required environment variables are missing: ${scanResult.join(", ")}`);
 }
 ```
 
