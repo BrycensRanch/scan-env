@@ -14,11 +14,14 @@ const scanEnv = (
   let buf = Buffer.from(fs.readFileSync(path.resolve(exampleEnv), "utf-8"));
   const config = dotenv.parse(buf); // will return an object
 
-  let ignoreConfig;
+  let ignoreConfig = {};
   if (ignoreEnv) {
+    try {
     // read and parse ignore env file
     buf = Buffer.from(fs.readFileSync(path.resolve(ignoreEnv), "utf-8"));
     ignoreConfig = dotenv.parse(buf); // will return an object
+    }
+    catch (e) {}
   }
 
   const missingEnvs = [];
